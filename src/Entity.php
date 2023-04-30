@@ -6,7 +6,10 @@ use Container\Interfaces\IEntityInterface;
 
 class Entity implements IEntityInterface
 {
-    protected array $tags;
+    /**
+    * @var string[]
+    */
+    protected array $tags = [];
     
     public function __construct(protected mixed $entity)
     {

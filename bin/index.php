@@ -49,4 +49,11 @@ $container->add(
     fn() => new B(),
 )->addTag('test1');
 
+// print 'Hello world'
 $container->get(A::class)->print();
+
+// get items where tag is 'test1'
+var_dump($container->getByTag('test1'));
+
+// get items where tag is 'foo' (we don't have this tag, so we will get empty array)
+var_dump($container->getByTag('foo'));

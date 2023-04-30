@@ -48,4 +48,17 @@ class Container implements IContainerInterface, ContainerInterface
 
         return $this->services[$id];
     }
+
+    public function getByTag(string $tag): array
+    {
+        $result = [];
+
+        foreach ($this->services as $id => $entity) {
+            if (in_array($tag, $entity->getTags())) {
+                $result[$id] = $entity->get();
+            }
+        }
+
+        return $result;
+    }
 }

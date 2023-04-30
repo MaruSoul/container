@@ -14,5 +14,7 @@
             "email": "soulmeri0@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "psr/container": "^2.0"
+    }
 }

@@ -7,7 +7,7 @@ use Exception;
 class NotImplementRequiredInterfaceException extends Exception
 {
     /**
-	 * @param string $idService
+	 * @param string $requiredInterface
 	 */
 	public function __construct(protected string $requiredInterface)
 	{
@@ -17,7 +17,7 @@ class NotImplementRequiredInterfaceException extends Exception
     /**
 	 * @return string
 	 */
-	public function getRequiredInterface()
+	public function getRequiredInterface(): string
 	{
 		return $this->requiredInterface;
 	}

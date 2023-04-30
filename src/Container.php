@@ -2,7 +2,7 @@
 
 namespace Container;
 
-use Container\Exceptions\{NotImplementRequiredInterfaceException, ServiceNotFoundException};
+use Container\Exceptions\{NotImplementRequiredInterfaceException, EntityNotFoundException};
 use Container\Interfaces\{IContainerInterface, IEntityInterface};
 use Psr\Container\ContainerInterface;
 
@@ -14,6 +14,7 @@ class Container implements IContainerInterface, ContainerInterface
     protected array $entities = [];
 
     /**
+     * @param string $entityClassName
      * @throws NotImplementRequiredInterfaceException
      */
     public function __construct(
@@ -26,22 +27,33 @@ class Container implements IContainerInterface, ContainerInterface
     }
 
     /**
-     * @throws ServiceNotFoundException
+     * @param string $id
+     * @return mixed
+     * @throws EntityNotFoundException
      */
     public function get(string $id): mixed
     {
         if (!$this->has($id)) {
-            throw new ServiceNotFoundException($id);
+            throw new EntityNotFoundException($id);
         }
 
         return $this->entities[$id]->get();
     }
 
+    /**
+     * @param string $id
+     * @return bool
+     */
     public function has(string $id): bool
     {
         return isset($this->entities[$id]);
     }
 
+    /**
+     * @param string $id
+     * @param mixed $value
+     * @return IEntityInterface
+     */
     public function add(string $id, mixed $value): IEntityInterface
     {
         $this->entities[$id] = new $this->entityClassName($value);
@@ -49,6 +61,10 @@ class Container implements IContainerInterface, ContainerInterface
         return $this->entities[$id];
     }
 
+    /**
+     * @param string $tag
+     * @return array
+     */
     public function getByTag(string $tag): array
     {
         $result = [];

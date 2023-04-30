@@ -11,7 +11,7 @@ class Container implements IContainerInterface, ContainerInterface
     /**
      * @var IEntityInterface[]
      */
-    protected array $services = [];
+    protected array $entities = [];
 
     /**
      * @throws NotImplementRequiredInterfaceException
@@ -34,26 +34,26 @@ class Container implements IContainerInterface, ContainerInterface
             throw new ServiceNotFoundException($id);
         }
 
-        return $this->services[$id]->get();
+        return $this->entities[$id]->get();
     }
 
     public function has(string $id): bool
     {
-        return isset($this->services[$id]);
+        return isset($this->entities[$id]);
     }
 
     public function add(string $id, mixed $value): IEntityInterface
     {
-        $this->services[$id] = new $this->entityClassName($value);
+        $this->entities[$id] = new $this->entityClassName($value);
 
-        return $this->services[$id];
+        return $this->entities[$id];
     }
 
     public function getByTag(string $tag): array
     {
         $result = [];
 
-        foreach ($this->services as $id => $entity) {
+        foreach ($this->entities as $id => $entity) {
             if (in_array($tag, $entity->getTags())) {
                 $result[$id] = $entity->get();
             }

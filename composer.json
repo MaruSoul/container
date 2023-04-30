@@ -1,0 +1,18 @@
+{
+    "name": "ekaterinadavidovich/container",
+    "description": "This project is example my work for portfolio. Container is dependency injection container. It allows you to implement the dependency injection design pattern meaning that you can decouple your class dependencies and have the container inject them where they are needed.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Container\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Maru Soul",
+            "email": "soulmeri0@gmail.com"
+        }
+    ],
+    "require": {}
+}

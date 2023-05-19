@@ -2,9 +2,9 @@
 
 namespace Container;
 
-use Container\Interfaces\IEntityInterface;
+use Container\Interfaces\EntityInterface;
 
-class Entity implements IEntityInterface
+class Entity implements EntityInterface
 {
     /**
     * @var string[]
@@ -28,9 +28,9 @@ class Entity implements IEntityInterface
 
     /**
      * @param string $tag
-     * @return IEntityInterface
+     * @return EntityInterface
      */
-    public function addTag(string $tag): IEntityInterface
+    public function addTag(string $tag): EntityInterface
     {
         $this->tags[] = $tag;
         return $this;

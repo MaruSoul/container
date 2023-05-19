@@ -3,13 +3,13 @@
 namespace Container;
 
 use Container\Exceptions\{NotImplementRequiredInterfaceException, EntityNotFoundException};
-use Container\Interfaces\{IContainerInterface, IEntityInterface};
-use Psr\Container\ContainerInterface;
+use Container\Interfaces\{ContainerInterface, EntityInterface};
+use Psr\Container\ContainerInterface as PsrContainerInterface;
 
-class Container implements IContainerInterface, ContainerInterface
+class Container implements ContainerInterface, PsrContainerInterface
 {
     /**
-     * @var IEntityInterface[]
+     * @var EntityInterface[]
      */
     protected array $entities = [];
 
@@ -21,8 +21,8 @@ class Container implements IContainerInterface, ContainerInterface
         protected string $entityClassName = Entity::class
     )
     {
-        if (!is_subclass_of($this->entityClassName, IEntityInterface::class)) {
-            throw new NotImplementRequiredInterfaceException(IEntityInterface::class);
+        if (!is_subclass_of($this->entityClassName, EntityInterface::class)) {
+            throw new NotImplementRequiredInterfaceException(EntityInterface::class);
         }
     }
 
@@ -52,9 +52,9 @@ class Container implements IContainerInterface, ContainerInterface
     /**
      * @param string $id
      * @param mixed $value
-     * @return IEntityInterface
+     * @return EntityInterface
      */
-    public function add(string $id, mixed $value): IEntityInterface
+    public function add(string $id, mixed $value): EntityInterface
     {
         $this->entities[$id] = new $this->entityClassName($value);
 

@@ -4,15 +4,15 @@ namespace Container\Interfaces;
 
 use Container\Exceptions\EntityNotFoundException;
 
-interface IContainerInterface
+interface ContainerInterface
 {
     /**
      * @param string $id
      * @param mixed $value
-     * @return IEntityInterface
+     * @return EntityInterface
      *@throws EntityNotFoundException
      */
-    public function add(string $id, mixed $value): IEntityInterface;
+    public function add(string $id, mixed $value): EntityInterface;
 
     /**
      * @param string $tag

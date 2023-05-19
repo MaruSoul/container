@@ -2,7 +2,7 @@
 
 namespace Container\Interfaces;
 
-interface IEntityInterface
+interface EntityInterface
 {
     /**
      * @return string[]
@@ -11,9 +11,9 @@ interface IEntityInterface
 
     /**
      * @param string $tag
-     * @return IEntityInterface
+     * @return EntityInterface
      */
-    public function addTag(string $tag): IEntityInterface;
+    public function addTag(string $tag): EntityInterface;
 
     /**
      * @return mixed

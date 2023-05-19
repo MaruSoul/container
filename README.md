@@ -8,12 +8,12 @@ Your code:
 ```php
 <?php
 
-class Сooker implements IСookerInterface
+class Сooker implements СookerInterface
 {
     // some code
 }
 
-class Fridge implements IFridgeInterface
+class Fridge implements FridgeInterface
 {
     // some code
 }
@@ -21,8 +21,8 @@ class Fridge implements IFridgeInterface
 class Kitchen
 {
     public function __construct(
-        protected IСookerInterface $cooker,
-        protected IFridgeInterface $fridge,
+        protected СookerInterface $cooker,
+        protected FridgeInterface $fridge,
         protected int $area,
         )
     {      
@@ -46,18 +46,18 @@ $container = new Container();
 
 $container->add('kitchenArea', 666)->addTag('apartment');
 
-$container->add(IСookerInterface::class, 
+$container->add(СookerInterface::class, 
         fn() => new Сooker()
     )->addTag('apartment');
 
-$container->add(IFridgeInterface::class, 
+$container->add(FridgeInterface::class, 
         fn() => new Fridge()
     )->addTag('apartment');
 
 $container->add(Kitchen::class, 
         fn() => new Kitchen(
-            $container->get(IСookerInterface::class),
-            $container->get(IFridgeInterface::class),
+            $container->get(СookerInterface::class),
+            $container->get(FridgeInterface::class),
             $container->get('kitchenArea'),
         )
     )->addTag('apartment');
